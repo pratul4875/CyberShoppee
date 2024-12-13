@@ -54,7 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CyberShoppeeContext\CyberShoppeeContext.cs" />
+    <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\OrderDetail.cs" />
+    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\ShoppingCart.cs" />
     <Compile Include="Migrations\202412130853025_V1.cs" />
     <Compile Include="Migrations\202412130853025_V1.Designer.cs">
       <DependentUpon>202412130853025_V1.cs</DependentUpon>

@@ -19,7 +19,7 @@ namespace CyberShoppeeApi.Controllers
         [Route("")]
         public IHttpActionResult Get()
         {
-            return Ok();
+            return Ok(_customerRepository.GetCustomers());
         }
     }
 }
