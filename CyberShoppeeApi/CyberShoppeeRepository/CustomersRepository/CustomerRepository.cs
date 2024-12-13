@@ -10,9 +10,28 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.CustomersRepository
     public class CustomerRepository : ICustomerRepository
     {
         CyberShoppeeContext context = new CyberShoppeeContext();
-        public IEnumerable<Customer> GetCustomers()
+
+        public Customer GetCustomerById(int id)
         {
-            return context.Customers.ToList();
+            var customer = context.Customers.Find(id);
+            if (customer == null)
+            {
+                throw new CutomerDataUnavailableException("No Customers Found");
+            }
+            return customer;
+
+
+           
+        }
+
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            var customers = context.Customers.ToList();
+            if (customers == null)
+            {
+                throw new CutomerDataUnavailableException("No Customers Found");
+            }
+            return customers; 
         }
     }
 }

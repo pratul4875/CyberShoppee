@@ -9,6 +9,7 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.CustomersRepository
 {
     public interface ICustomerRepository
     {
-         IEnumerable<Customer> GetCustomers();
+         IEnumerable<Customer> GetAllCustomers();
+        Customer GetCustomerById(int id);
     }
 }

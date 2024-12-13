@@ -112,6 +112,7 @@
     <Compile Include="CyberShoppeeRepository\CategoriesRepository\ICategoryRepository.cs" />
     <Compile Include="CyberShoppeeRepository\CustomersRepository\CustomerRepository.cs" />
     <Compile Include="CyberShoppeeRepository\CustomersRepository\ICustomerRepository.cs" />
+    <Compile Include="CyberShoppeeRepository\DatabaseErrors.cs" />
     <Compile Include="CyberShoppeeRepository\OrderDetailsRepository\IOrderDetailRepository.cs" />
     <Compile Include="CyberShoppeeRepository\OrderDetailsRepository\OrderDetailRepository.cs" />
     <Compile Include="CyberShoppeeRepository\OrdersRepository\IOrderRepository.cs" />

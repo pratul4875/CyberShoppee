@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CyberShoppeeDataAccessLayer.Entity;
 namespace CyberShoppeeApi.CyberShoppeeRepository.CategoriesRepository
 {
-    internal interface ICategoryRepository
+    public interface ICategoryRepository
     {
+         IEnumerable<Category> GetAllCategories();
+         Category GetCategoryById(int id);
     }
 }

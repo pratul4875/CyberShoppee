@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CyberShoppeeApi.CyberShoppeeRepository;
 using CyberShoppeeApi.CyberShoppeeRepository.CustomersRepository;
 
 namespace CyberShoppeeApi.Controllers
@@ -15,11 +16,28 @@ namespace CyberShoppeeApi.Controllers
         private ICustomerRepository _customerRepository = new CustomerRepository();
 
 
-
+        // route for getting all product details in a list
         [Route("")]
-        public IHttpActionResult Get()
+        public IHttpActionResult GetAllCustomers()
         {
-            return Ok(_customerRepository.GetCustomers());
+            try { 
+                return Ok(_customerRepository.GetAllCustomers());
+            }
+            catch(CutomerDataUnavailableException e) {
+                return BadRequest(e.Message); 
+            }
+
+        }
+        [Route("{id}")]
+        public IHttpActionResult GetCustomerById(int id) {
+            try
+            {
+                return Ok(_customerRepository.GetCustomerById(id));
+            }
+            catch (CutomerDataUnavailableException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
