@@ -83,5 +83,49 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.CustomersRepository
             context.SaveChanges();
             return $" Successfully changed password for {request.Email}";
         }
+        public string Register(Customer customer)
+        {
+            // Check if the customer with the same email already exists
+            var existingCustomer = context.Customers.Any(c => c.EmailAddress == customer.EmailAddress);
+            if (existingCustomer)
+            {
+                throw new CutomerDataUnavailableException("Email already registered");
+            }
+            else
+            {
+                if (customer.Password.Length > 8)
+                {
+                    var model = new Customer();
+                    // Create new customer
+                    model.FullName = customer.FullName;
+                    model.EmailAddress = customer.EmailAddress;
+                    model.DeliveryAddress = customer.DeliveryAddress;
+                    model.Password = customer.Password;
+                    context.Customers.Add(model);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new CutomerDataUnavailableException("Password Length less than 8 character!!!");
+                }
+            };
+
+            // Add new customer to context and save changes
+
+            return "Registered Successfully";
+        }
+
+        public string DeleteAccount(int id)
+        {
+            var customer = context.Customers.Find(id);
+            if (customer == null)
+            {
+                throw new CutomerDataUnavailableException("Customer Not found");
+            }
+
+            context.Customers.Remove(customer);
+            context.SaveChanges();
+            return "Customer Account deleted Successfully";
+        }
     }
 }

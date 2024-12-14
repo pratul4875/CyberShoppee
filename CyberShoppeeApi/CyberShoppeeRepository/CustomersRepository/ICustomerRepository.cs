@@ -16,5 +16,8 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.CustomersRepository
         void UpdateCustomerProfile(Customer customer);
         string UpdatePassword(ForgotPasswordModel request);
         string ChangePassword(ChangePasswordModel request);
+        string Register(Customer customer);
+
+        string DeleteAccount(int id);
     }
 }
