@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CyberShoppeeWebClient.Models
 {
-    public class LoginModel
+    public class RegistrationModel
     {
         public int CustomerId { get; set; }
         public string FullName { get; set; }
