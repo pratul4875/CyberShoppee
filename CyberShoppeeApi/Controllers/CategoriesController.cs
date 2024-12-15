@@ -31,18 +31,7 @@ namespace CyberShoppeeApi.Controllers
             
             
         }
-        [Route("{id}")]
-        public IHttpActionResult GetCategoryById(int id)
-        {
-            try {
-                return Ok(_categoryRepository.GetCategoryById(id));
-            }
-            catch(CategoriesDataUnavailableException e)
-            {
-                return BadRequest(e.Message);
-            }
-
-        }
+        
 
         }
 }
