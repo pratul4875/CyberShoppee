@@ -17,5 +17,7 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.ProductsRepository
         IEnumerable<Product> getProductByProductsName(string productName);
 
         IEnumerable<Product> getTopProduct();
+
+        Product getProductById(int id);
     }
 }

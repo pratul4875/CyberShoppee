@@ -45,6 +45,19 @@ namespace CyberShoppeeApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Product/{id}")]
+        public IHttpActionResult GetProductById(int id)
+        {
+            try
+            {
+                return Ok(_productRepository.getProductById(id));
+            }
+            catch (ProductDataUnavailableException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet]
         [Route("Search/{name}")]
