@@ -31,6 +31,23 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.ProductsRepository
             return products;
         }
 
+        public Product getProductById(int id)
+        {
+            if (id == 0)
+            {
+                throw new ProductDataUnavailableException("Product Id not found");
+            }
+            else
+            {
+                var product = cyberShoppeeContext.Products.Find(id);
+                if (product == null)
+                {
+                    throw new ProductDataUnavailableException("Product not found");
+                }
+                return product;
+            }
+        }
+
         public IEnumerable<Product> getProductByProductsName(string name)
         {
             var products = cyberShoppeeContext.Products.Where(p => p.ModelName.Contains(name)).ToList();
@@ -46,7 +63,7 @@ namespace CyberShoppeeApi.CyberShoppeeRepository.ProductsRepository
             var topProducts = cyberShoppeeContext.Products.OrderByDescending(c => c.ProductId).Take(10).ToList();
             if (topProducts == null)
             {
-                throw new CutomerDataUnavailableException("Latest Product not found ");
+                throw new ProductDataUnavailableException("Latest Product not found ");
             }
             return topProducts;
         }
