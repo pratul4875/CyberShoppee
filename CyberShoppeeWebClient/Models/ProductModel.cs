@@ -9,8 +9,8 @@ namespace CyberShoppeeWebClient.Models
     {
       public int ProductId { get; set; }
       public int CategoryId { get; set; }
-      public string ModelNumber { get; set; }
-      public string ModelName { get; set; }
+      public string ProductNumber { get; set; }
+      public string ProductName { get; set; }
       public decimal UnitCost { get; set; }
       public string Description { get; set; }
     }
