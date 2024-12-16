@@ -43,7 +43,7 @@ namespace CyberShoppeeWebClient.Controllers
 
         public ActionResult Logout()
         {
-            Session.Abandon();
+            Session.Clear();
             return RedirectToAction("Login", "Account");
         }
         public ActionResult Register()

@@ -6,9 +6,100 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .navbar-brand {
+            color: #000000 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000000 !important;
+            padding: 10px 15px;
+            transition: color 0.3s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #0070f3 !important;
+            }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 0 0 5px 5px;
+        }
+
+            .dropdown-menu a {
+                padding: 10px 15px;
+                white-space: nowrap;
+                display: block;
+                text-decoration: none;
+                color: #000000;
+                transition: color 0.3s;
+            }
+
+                .dropdown-menu a:hover {
+                    color: #0070f3;
+                }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffffff;
+            color: #000000;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .fas.fa-user {
+            margin-right: 5px;
+        }
+        .footer {
+            background-color:#ffffff;
+            color: #ffffff;
+        }
+
+            .footer a {
+                color: #ffffff;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    color: #007bff;
+                    text-decoration: underline;
+                }
+
+        .social-icons a {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
         <div class="container">
             @Html.ActionLink("CyberShoppee", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
@@ -17,17 +108,84 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                   </ul>
+                    <!-- Left side of the navbar -->
+                </ul>
+                <ul class="navbar-nav">
+                    <!-- Right side of the navbar -->
+                    @if (Session["user"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Edit", "Account")">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Cart", "Home")">
+                                <i class="fas fa-shopping-cart"></i> Cart
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i> @Session["user"]
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "Account")">Change Password</a>
+                                <a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="footer mt-auto py-3 text-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>About CyberShoppee</h5>
+                        <p>CyberShoppee is your one-stop shop for the latest and greatest in tech products. We offer a wide range of electronics, gadgets, and accessories to meet all your needs.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="@Url.Action("Index", "Home")" class="text-black">Home</a></li>
+                            <li><a href="@Url.Action("About", "Home")" class="text-black">About Us</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")" class="text-black">Contact Us</a></li>
+                            <li><a href="@Url.Action("Privacy", "Home")" class="text-black">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p>Email: support@cybershoppee.com</p>
+                        <p>Phone: +1 (123) 456-7890</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-white mr-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mr-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-white">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>© @DateTime.Now.Year CyberShoppee. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
         </footer>
+
+       
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
