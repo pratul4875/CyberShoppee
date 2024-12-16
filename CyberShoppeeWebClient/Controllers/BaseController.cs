@@ -11,6 +11,7 @@ namespace CyberShoppeeWebClient.Controllers
         // GET: Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            //Session["user"] = "Jitendra Yadav";
             if (Session["user"] == null)
             {
                 filterContext.Result = new RedirectResult("/Account/Login");
